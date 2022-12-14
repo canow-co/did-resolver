@@ -3,7 +3,7 @@ package utils
 import (
 	"regexp"
 
-	cheqdUtils "github.com/cheqd/cheqd-node/x/cheqd/utils"
+	cheqdUtils "github.com/canow-co/cheqd-node/x/cheqd/utils"
 	"github.com/google/uuid"
 )
 

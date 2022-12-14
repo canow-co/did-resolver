@@ -5,7 +5,7 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/cheqd/did-resolver/types"
+	"github.com/canow-co/did-resolver/types"
 	"github.com/labstack/echo/v4"
 )
 

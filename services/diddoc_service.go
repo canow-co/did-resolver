@@ -4,9 +4,9 @@ import (
 	"net/url"
 	"strings"
 
-	cheqdTypes "github.com/cheqd/cheqd-node/x/cheqd/types"
-	cheqdUtils "github.com/cheqd/cheqd-node/x/cheqd/utils"
-	"github.com/cheqd/did-resolver/types"
+	cheqdTypes "github.com/canow-co/cheqd-node/x/cheqd/types"
+	cheqdUtils "github.com/canow-co/cheqd-node/x/cheqd/utils"
+	"github.com/canow-co/did-resolver/types"
 	"github.com/rs/zerolog/log"
 )
 

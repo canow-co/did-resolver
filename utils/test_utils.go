@@ -3,9 +3,9 @@ package utils
 import (
 	"crypto/sha256"
 
-	cheqd "github.com/cheqd/cheqd-node/x/cheqd/types"
-	resource "github.com/cheqd/cheqd-node/x/resource/types"
-	"github.com/cheqd/did-resolver/types"
+	cheqd "github.com/canow-co/cheqd-node/x/cheqd/types"
+	resource "github.com/canow-co/cheqd-node/x/resource/types"
+	"github.com/canow-co/did-resolver/types"
 )
 
 const (

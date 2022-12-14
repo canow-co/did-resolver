@@ -3,7 +3,7 @@ package cmd
 import (
 	"net/http"
 
-	"github.com/cheqd/did-resolver/types"
+	"github.com/canow-co/did-resolver/types"
 	"github.com/labstack/echo/v4"
 	"github.com/rs/zerolog/log"
 )

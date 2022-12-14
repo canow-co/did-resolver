@@ -6,10 +6,10 @@ import (
 
 	"strings"
 
-	cheqdUtils "github.com/cheqd/cheqd-node/x/cheqd/utils"
-	resourceTypes "github.com/cheqd/cheqd-node/x/resource/types"
-	"github.com/cheqd/did-resolver/types"
-	"github.com/cheqd/did-resolver/utils"
+	cheqdUtils "github.com/canow-co/cheqd-node/x/cheqd/utils"
+	resourceTypes "github.com/canow-co/cheqd-node/x/resource/types"
+	"github.com/canow-co/did-resolver/types"
+	"github.com/canow-co/did-resolver/utils"
 )
 
 type ResourceService struct {

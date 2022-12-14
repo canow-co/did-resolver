@@ -1,9 +1,9 @@
 package types
 
-import resource "github.com/cheqd/cheqd-node/x/resource/types"
+import resource "github.com/canow-co/cheqd-node/x/resource/types"
 
 type DereferencedResource struct {
-	ResourceURI       string  `json:"resourceURI" example:"did:cheqd:testnet:55dbc8bf-fba3-4117-855c-1e0dc1d3bb47/resources/398cee0a-efac-4643-9f4c-74c48c72a14b"`
+	ResourceURI       string  `json:"resourceURI" example:"did:canow:testnet:55dbc8bf-fba3-4117-855c-1e0dc1d3bb47/resources/398cee0a-efac-4643-9f4c-74c48c72a14b"`
 	CollectionId      string  `json:"resourceCollectionId" example:"55dbc8bf-fba3-4117-855c-1e0dc1d3bb47"`
 	ResourceId        string  `json:"resourceId" example:"398cee0a-efac-4643-9f4c-74c48c72a14b"`
 	Name              string  `json:"resourceName" example:"Image Resource"`

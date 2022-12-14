@@ -1,8 +1,8 @@
 package types
 
 import (
-	cheqd "github.com/cheqd/cheqd-node/x/cheqd/types"
-	resource "github.com/cheqd/cheqd-node/x/resource/types"
+	cheqd "github.com/canow-co/cheqd-node/x/cheqd/types"
+	resource "github.com/canow-co/cheqd-node/x/resource/types"
 )
 
 type ResolutionDidDocMetadata struct {

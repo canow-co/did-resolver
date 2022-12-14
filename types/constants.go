@@ -24,7 +24,7 @@ const (
 )
 
 const (
-	DID_METHOD    = "cheqd"
+	DID_METHOD    = "canow"
 	RESOLVER_PATH = "/1.0/identifiers/"
 	RESOURCE_PATH = "/resources/"
 	SWAGGER_PATH  = "/swagger/"

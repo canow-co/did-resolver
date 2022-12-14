@@ -1,9 +1,9 @@
-module github.com/cheqd/did-resolver
+module github.com/canow-co/did-resolver
 
 go 1.18
 
 require (
-	github.com/cheqd/cheqd-node v0.7.3
+	github.com/canow-co/cheqd-node v0.1.1-0.20221114091310-95ecfb5c72b1
 	github.com/labstack/echo/v4 v4.9.1
 	github.com/rs/zerolog v1.28.0
 	github.com/spf13/cobra v1.6.1

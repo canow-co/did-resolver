@@ -119,7 +119,7 @@ jobs:
           labels: |
             org.opencontainers.image.title="cheqd DID Resolver"
             org.opencontainers.image.description="DID Resolver for the did:cheqd method"
-            org.opencontainers.image.source="https://github.com/cheqd/did-resolver"
+            org.opencontainers.image.source="https://github.com/canow-co/did-resolver"
             org.opencontainers.image.vendor="Cheqd Foundation Limited"
             org.opencontainers.image.created={{date 'dddd, MMMM Do YYYY, h:mm:ss a'}}
             org.opencontainers.image.documentation="https://docs.cheqd.io/identity"
