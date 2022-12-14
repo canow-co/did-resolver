@@ -57,7 +57,7 @@ jobs:
           version: latest
           args: release --rm-dist
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
       - name: Set version number
         id: set-version
@@ -98,7 +98,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.GH_TOKEN }}
       
       - name: Login to DigitalOcean Container Registry
         run: doctl registry login --expiry-seconds 600
@@ -117,12 +117,11 @@ jobs:
             type=raw,value=production-latest
             type=sha,format=long
           labels: |
-            org.opencontainers.image.title="cheqd DID Resolver"
-            org.opencontainers.image.description="DID Resolver for the did:cheqd method"
+            org.opencontainers.image.title="canow DID Resolver"
+            org.opencontainers.image.description="DID Resolver for the did:canow method"
             org.opencontainers.image.source="https://github.com/canow-co/did-resolver"
-            org.opencontainers.image.vendor="Cheqd Foundation Limited"
+            org.opencontainers.image.vendor="Canow Foundation Limited"
             org.opencontainers.image.created={{date 'dddd, MMMM Do YYYY, h:mm:ss a'}}
-            org.opencontainers.image.documentation="https://docs.cheqd.io/identity"
 
       - name: Build image with labels
         uses: docker/build-push-action@v3
