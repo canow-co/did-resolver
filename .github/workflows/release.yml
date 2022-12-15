@@ -120,7 +120,7 @@ jobs:
             org.opencontainers.image.title="canow DID Resolver"
             org.opencontainers.image.description="DID Resolver for the did:canow method"
             org.opencontainers.image.source="https://github.com/canow-co/did-resolver"
-            org.opencontainers.image.vendor="Canow Foundation Limited"
+            org.opencontainers.image.vendor="Canow"
             org.opencontainers.image.created={{date 'dddd, MMMM Do YYYY, h:mm:ss a'}}
 
       - name: Build image with labels

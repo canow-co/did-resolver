@@ -3,7 +3,7 @@
   "version": "1.1.1",
   "description": "DID Resolver for did:canow method",
   "license": "Apache-2.0",
-  "author": "Cheqd Foundation Limited (https://github.com/canow)",
+  "author": "Canow (https://github.com/canow)",
   "homepage": "https://github.com/canow-co/did-resolver#readme",
   "bugs": {
     "url": "https://github.com/canow-co/did-resolver/issues"

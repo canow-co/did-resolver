@@ -30,7 +30,6 @@ func printVersion(cmd *cobra.Command, args []string) error {
 // @contact.name Canow
 // @license.name Apache 2.0
 // @license.url	https://github.com/canow-co/did-resolver/blob/main/LICENSE
-// @host resolver.cheqd.net
 // @BasePath /1.0/identifiers
 // @schemes	https http
 func main() {
