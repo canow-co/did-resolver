@@ -3,7 +3,7 @@ package types
 import (
 	"time"
 
-	cheqdUtils "github.com/cheqd/cheqd-node/x/cheqd/utils"
+	cheqdUtils "github.com/canow-co/cheqd-node/x/cheqd/utils"
 )
 
 type ResolutionMetadata struct {

@@ -27,3 +27,4 @@ linters-settings:
   misspell:
     ignore-words:
       - cheqd
+      - canow

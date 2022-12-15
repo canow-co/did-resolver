@@ -24,12 +24,6 @@ jobs:
     uses: ./.github/workflows/test.yml
     secrets: inherit
 
-  call-deploy:
-    name: "Deploy"
-    needs: call-build
-    uses: ./.github/workflows/deploy.yml
-    secrets: inherit
-
   call-release:
     name: "Release"
     needs: call-test

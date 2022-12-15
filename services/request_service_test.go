@@ -6,10 +6,10 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	cheqd "github.com/cheqd/cheqd-node/x/cheqd/types"
-	resource "github.com/cheqd/cheqd-node/x/resource/types"
-	"github.com/cheqd/did-resolver/types"
-	"github.com/cheqd/did-resolver/utils"
+	cheqd "github.com/canow-co/cheqd-node/x/cheqd/types"
+	resource "github.com/canow-co/cheqd-node/x/resource/types"
+	"github.com/canow-co/did-resolver/types"
+	"github.com/canow-co/did-resolver/utils"
 	"github.com/labstack/echo/v4"
 	"github.com/stretchr/testify/require"
 )

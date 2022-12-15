@@ -8,10 +8,10 @@ import (
 
 	"google.golang.org/grpc/credentials"
 
-	cheqd "github.com/cheqd/cheqd-node/x/cheqd/types"
-	cheqdUtils "github.com/cheqd/cheqd-node/x/cheqd/utils"
-	resource "github.com/cheqd/cheqd-node/x/resource/types"
-	"github.com/cheqd/did-resolver/types"
+	cheqd "github.com/canow-co/cheqd-node/x/cheqd/types"
+	cheqdUtils "github.com/canow-co/cheqd-node/x/cheqd/utils"
+	resource "github.com/canow-co/cheqd-node/x/resource/types"
+	"github.com/canow-co/did-resolver/types"
 	"github.com/rs/zerolog/log"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
@@ -40,7 +40,7 @@ func NewLedgerService() LedgerService {
 
 // QueryDIDDoc godoc
 //
-//	@Summary		Resolve DID Document on did:cheqd
+//	@Summary		Resolve DID Document on did:canow
 //	@Description	Fetch DID Document ("DIDDoc") from cheqd network
 //	@Tags			DID Resolution
 //	@Accept			application/did+ld+json,application/ld+json,application/did+json

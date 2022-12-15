@@ -27,9 +27,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: |
-            ${{ env.IMAGE_NAME }}
-            registry.digitalocean.com/${{ env.IMAGE_NAME }}
+          images: ${{ env.IMAGE_NAME }}
           tags: |
             type=ref,event=branch
             type=raw,value=staging-latest
@@ -47,9 +45,7 @@ jobs:
           cache-to: type=gha,mode=min
 
       - name: Save Docker images
-        run: |
-          docker save ${{ env.IMAGE_NAME }} > /tmp/did-resolver-build.tar
-          docker save registry.digitalocean.com/${{ env.IMAGE_NAME }} > /tmp/did-resolver-staging.tar
+        run: docker save ${{ env.IMAGE_NAME }} > /tmp/did-resolver-build.tar
 
       - name: Upload build image as an artifact
         uses: actions/upload-artifact@v3
