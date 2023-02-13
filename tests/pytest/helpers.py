@@ -7,12 +7,12 @@ import json
 RESOLVER_URL = "http://localhost:8080"
 PATH = "/1.0/identifiers/"
 
-TESTNET_DID = "did:cheqd:testnet:c1685ca0-1f5b-439c-8eb8-5c0e85ab7cd0"
-TESTNET_DID_VERSION_ID = "e5615fc2-6f13-42b1-989c-49576a574cef"
+TESTNET_DID = "did:canow:testnet:U7HUWFRA5hNaQgsKBFJ85Q"
+TESTNET_DID_VERSION_ID = "09780796-afbd-4647-b9e3-0a11afd4d19b"
 TESTNET_DID_VERSION = TESTNET_DID + "/version/" + TESTNET_DID_VERSION_ID
 TESTNET_DID_VERSIONS = TESTNET_DID + "/versions"
-TESTNET_FRAGMENT = TESTNET_DID + "#key-1"
-FAKE_TESTNET_DID = "did:cheqd:testnet:76471e8c-0d1c-4b97-9b11-17b65e024133"
+TESTNET_FRAGMENT = TESTNET_DID + "#key1"
+FAKE_TESTNET_DID = "did:canow:testnet:76471e8c-0d1c-4b97-9b11-17b65e024133"
 FAKE_TESTNET_VERSION_ID = "e5615fc2-6f13-42b1-989c-49576a574ced"
 FAKE_TESTNET_VERSION = FAKE_TESTNET_DID + "/version/" + FAKE_TESTNET_VERSION_ID
 FAKE_TESTNET_DID_VERSIONS = FAKE_TESTNET_DID + "/versions"
@@ -23,12 +23,12 @@ TESTNET_RESOURCE_NAME = "Demo Resource"
 RESOURCE_DATA = "{ \r\n    \"content\": \"test data\"\r\n}"
 FAKE_TESTNET_FRAGMENT = TESTNET_DID + "#fake_key"
 FAKE_TESTNET_RESOURCE = TESTNET_DID + "/resources/76471e8c-0d1c-4b97-9b11-17b65e024334"
-INDY_TESTNET_DID = "did:cheqd:testnet:zHqbcXb3irKRCMst"
-MIGRATED_INDY_TESTNET_DID = "did:cheqd:testnet:CpeMubv5yw63jXyrgRRsxR"
+INDY_TESTNET_DID = "did:canow:testnet:zHqbcXb3irKRCMst"
+MIGRATED_INDY_TESTNET_DID = "did:canow:testnet:CpeMubv5yw63jXyrgRRsxR"
 
-MAINNET_DID = "did:cheqd:mainnet:76471e8c-0d1c-4b97-9b11-17b65e024335"
+MAINNET_DID = "did:canow:mainnet:76471e8c-0d1c-4b97-9b11-17b65e024335"
 MAINNET_FRAGMENT = MAINNET_DID + "#key1"
-FAKE_MAINNET_DID = "did:cheqd:mainnet:76471e8c-0d1c-4b27-9b11-17b65e024133"
+FAKE_MAINNET_DID = "did:canow:mainnet:76471e8c-0d1c-4b27-9b11-17b65e024133"
 FAKE_MAINNET_FRAGMENT = MAINNET_DID + "#fake_key"
 
 DIDJSON = "application/did+json"

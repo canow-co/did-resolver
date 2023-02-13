@@ -14,7 +14,7 @@ from helpers import run, TESTNET_DID, MAINNET_DID, TESTNET_FRAGMENT, MAINNET_FRA
     "did_url, expected_output",
     [
         (TESTNET_DID,
-         fr"didResolutionMetadata(.*?)didDocument(.*?)\"id\": \"{TESTNET_DID}\"(.*?)didDocumentMetadata(.*?){TESTNET_RESOURCE_NAME}"),
+         fr"didResolutionMetadata(.*?)didDocument(.*?)\"id\": \"{TESTNET_DID}\"(.*?)didDocumentMetadata(.*?)"),
         
         # mainnet DID currently use another format of DID, when mainnet network will be same like testnet network you can run this test too.
         # (MAINNET_DID, fr"didResolutionMetadata(.*?)didDocument(.*?)\"id\": \"{MAINNET_DID}\"(.*?)didDocumentMetadata"),
@@ -38,15 +38,15 @@ from helpers import run, TESTNET_DID, MAINNET_DID, TESTNET_FRAGMENT, MAINNET_FRA
         (FAKE_MAINNET_FRAGMENT, r"\"dereferencingMetadata(.*?)\"error\": \"notFound\"(.*?)"
                                 r"\"contentStream\": null,(.*?)\"contentMetadata\": \{\}"),
 
-        (TESTNET_RESOURCE_METADATA, r"\"dereferencingMetadata(.*?)\"contentStream\":(.*?)linkedResourceMetadata(.*?)"
-                                    "resourceCollectionId(.*?)\"contentMetadata\":(.*?)"),
-        (TESTNET_RESOURCE_LIST, r"\"dereferencingMetadata(.*?)\"contentStream\":(.*?)linkedResourceMetadata(.*?)"
-                                "resourceCollectionId(.*?)\"contentMetadata\":(.*?)"),
-        (TESTNET_RESOURCE, RESOURCE_DATA),
+        # (TESTNET_RESOURCE_METADATA, r"\"dereferencingMetadata(.*?)\"contentStream\":(.*?)linkedResourceMetadata(.*?)"
+        #                             "resourceCollectionId(.*?)\"contentMetadata\":(.*?)"),
+        # (TESTNET_RESOURCE_LIST, r"\"dereferencingMetadata(.*?)\"contentStream\":(.*?)linkedResourceMetadata(.*?)"
+        #                         "resourceCollectionId(.*?)\"contentMetadata\":(.*?)"),
+        # (TESTNET_RESOURCE, RESOURCE_DATA),
         (FAKE_TESTNET_RESOURCE, r"\"dereferencingMetadata(.*?)\"error\": \"notFound\"(.*?)"
                                 r"\"contentStream\": null,(.*?)\"contentMetadata\": \{\}"),
-        (INDY_TESTNET_DID, fr"didResolutionMetadata(.*?)didDocument(.*?)\"id\": \"{MIGRATED_INDY_TESTNET_DID}\""),
-        (MIGRATED_INDY_TESTNET_DID, fr"didResolutionMetadata(.*?)didDocument(.*?)\"id\": \"{MIGRATED_INDY_TESTNET_DID}\""),
+        # (INDY_TESTNET_DID, fr"didResolutionMetadata(.*?)didDocument(.*?)\"id\": \"{MIGRATED_INDY_TESTNET_DID}\""),
+        # (MIGRATED_INDY_TESTNET_DID, fr"didResolutionMetadata(.*?)didDocument(.*?)\"id\": \"{MIGRATED_INDY_TESTNET_DID}\""),
         (TESTNET_DID_VERSION, 
             fr"didResolutionMetadata(.*?)didDocument(.*?)\"id\": \"{TESTNET_DID}\"(.*?)didDocumentMetadata(.*?)\"versionId\": \"{TESTNET_DID_VERSION_ID}\""),
         (FAKE_TESTNET_VERSION, r"\"didResolutionMetadata(.*?)\"error\": \"notFound\"(.*?)"
@@ -155,6 +155,7 @@ primary_dereferencing_content_type_test_set = [
     "accept, expected_header, has_context, expected_status_code, expected_body",
     primary_dereferencing_content_type_test_set
 )
+@pytest.mark.skip(reason="while Canow doesn't have resources in ledgers")
 def test_dereferencing_content_type_resource_metadata(accept, expected_header, expected_body, has_context,
                                                       expected_status_code):
     url = RESOLVER_URL + PATH + TESTNET_RESOURCE_METADATA
@@ -174,6 +175,7 @@ def test_dereferencing_content_type_resource_metadata(accept, expected_header, e
     "accept, expected_header, expected_status_code",
     [(LDJSON, JSON, 200), ]
 )
+@pytest.mark.skip(reason="while Canow doesn't have resources in ledgers")
 def test_dereferencing_content_type_resource(accept, expected_header, expected_status_code):
     url = RESOLVER_URL + PATH + TESTNET_RESOURCE
     header = {"Accept": accept} if accept else {}
@@ -185,7 +187,7 @@ def test_dereferencing_content_type_resource(accept, expected_header, expected_s
     [
         (TESTNET_DID, 200),
         (TESTNET_FRAGMENT, 200),
-        (TESTNET_RESOURCE_METADATA, 200),
+        # (TESTNET_RESOURCE_METADATA, 200),
         (FAKE_TESTNET_DID, 404),
         (FAKE_TESTNET_FRAGMENT, 404),
         (FAKE_TESTNET_RESOURCE, 404),

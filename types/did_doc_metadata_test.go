@@ -5,14 +5,14 @@ import (
 	"fmt"
 	"testing"
 
-	did "github.com/cheqd/cheqd-node/x/did/types"
-	resource "github.com/cheqd/cheqd-node/x/resource/types"
+	did "github.com/canow-co/cheqd-node/x/did/types"
+	resource "github.com/canow-co/cheqd-node/x/resource/types"
 	"github.com/stretchr/testify/require"
 )
 
 func TestNewResolutionDidDocMetadata(t *testing.T) {
 	validIdentifier := "fb53dd05-329b-4614-a3f2-c0a8c7554ee3"
-	validDid := "did:cheqd:mainnet:" + validIdentifier
+	validDid := "did:canow:mainnet:" + validIdentifier
 	validResourceId := "a09abea0-22e0-4b35-8f70-9cc3a6d0b5fd"
 	resourceData := []byte("test_checksum")
 	h := sha256.New()

@@ -4,13 +4,13 @@ import (
 	"net/url"
 	"strings"
 
-	migrations "github.com/cheqd/cheqd-node/app/migrations/helpers"
-	didTypes "github.com/cheqd/cheqd-node/x/did/types"
-	didUtils "github.com/cheqd/cheqd-node/x/did/utils"
+	migrations "github.com/canow-co/cheqd-node/app/migrations/helpers"
+	didTypes "github.com/canow-co/cheqd-node/x/did/types"
+	didUtils "github.com/canow-co/cheqd-node/x/did/utils"
 	"github.com/google/uuid"
 
-	"github.com/cheqd/did-resolver/types"
-	"github.com/cheqd/did-resolver/utils"
+	"github.com/canow-co/did-resolver/types"
+	"github.com/canow-co/did-resolver/utils"
 	"github.com/rs/zerolog/log"
 )
 

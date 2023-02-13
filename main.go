@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/cheqd/did-resolver/cmd"
-	_ "github.com/cheqd/did-resolver/docs"
+	"github.com/canow-co/did-resolver/cmd"
+	_ "github.com/canow-co/did-resolver/docs"
 	"github.com/spf13/cobra"
 )
 
@@ -30,7 +30,7 @@ func printVersion(cmd *cobra.Command, args []string) error {
 // @contact.name Cheqd Foundation Limited
 // @contact.url	https://cheqd.io
 // @license.name Apache 2.0
-// @license.url	https://github.com/cheqd/did-resolver/blob/main/LICENSE
+// @license.url	https://github.com/canow-co/did-resolver/blob/main/LICENSE
 // @host resolver.cheqd.net
 // @BasePath /1.0/identifiers
 // @schemes	https http

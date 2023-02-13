@@ -5,10 +5,10 @@ import (
 	"strings"
 	"testing"
 
-	did "github.com/cheqd/cheqd-node/x/did/types"
-	resource "github.com/cheqd/cheqd-node/x/resource/types"
-	"github.com/cheqd/did-resolver/types"
-	"github.com/cheqd/did-resolver/utils"
+	did "github.com/canow-co/cheqd-node/x/did/types"
+	resource "github.com/canow-co/cheqd-node/x/resource/types"
+	"github.com/canow-co/did-resolver/types"
+	"github.com/canow-co/did-resolver/utils"
 	"github.com/stretchr/testify/require"
 )
 

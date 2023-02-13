@@ -5,10 +5,10 @@ import (
 	"net/url"
 	"testing"
 
-	did "github.com/cheqd/cheqd-node/x/did/types"
-	resource "github.com/cheqd/cheqd-node/x/resource/types"
-	"github.com/cheqd/did-resolver/types"
-	"github.com/cheqd/did-resolver/utils"
+	did "github.com/canow-co/cheqd-node/x/did/types"
+	resource "github.com/canow-co/cheqd-node/x/resource/types"
+	"github.com/canow-co/did-resolver/types"
+	"github.com/canow-co/did-resolver/utils"
 	"github.com/stretchr/testify/require"
 )
 
@@ -142,7 +142,7 @@ func TestResolve(t *testing.T) {
 		fmt.Printf("Testing %s", subtest.name)
 		id := "did:" + subtest.method + ":" + subtest.namespace + ":" + subtest.identifier
 		t.Run(subtest.name, func(t *testing.T) {
-			diddocService := NewDIDDocService("cheqd", subtest.ledgerService)
+			diddocService := NewDIDDocService("canow", subtest.ledgerService)
 			expectedDIDProperties := types.DidProperties{
 				DidString:        id,
 				MethodSpecificId: subtest.identifier,
@@ -237,7 +237,7 @@ func TestDereferencing(t *testing.T) {
 
 	for _, subtest := range subtests {
 		t.Run(subtest.name, func(t *testing.T) {
-			diddocService := NewDIDDocService("cheqd", subtest.ledgerService)
+			diddocService := NewDIDDocService("canow", subtest.ledgerService)
 			var expectedDIDProperties types.DidProperties
 			if subtest.expectedError == nil {
 				expectedDIDProperties = types.DidProperties{

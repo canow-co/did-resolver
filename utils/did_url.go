@@ -4,8 +4,8 @@ import (
 	"errors"
 	"regexp"
 
-	didUtils "github.com/cheqd/cheqd-node/x/did/utils"
-	didutils "github.com/cheqd/cheqd-node/x/did/utils"
+	didUtils "github.com/canow-co/cheqd-node/x/did/utils"
+	didutils "github.com/canow-co/cheqd-node/x/did/utils"
 	"github.com/google/uuid"
 )
 

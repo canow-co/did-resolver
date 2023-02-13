@@ -3,8 +3,8 @@ package types
 import (
 	"time"
 
-	did "github.com/cheqd/cheqd-node/x/did/types"
-	resource "github.com/cheqd/cheqd-node/x/resource/types"
+	did "github.com/canow-co/cheqd-node/x/did/types"
+	resource "github.com/canow-co/cheqd-node/x/resource/types"
 )
 
 // Changed "Created time.Time" to "Create *time.Time".

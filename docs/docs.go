@@ -350,7 +350,7 @@ const docTemplate = `{
                 },
                 "resourceURI": {
                     "type": "string",
-                    "example": "did:cheqd:testnet:55dbc8bf-fba3-4117-855c-1e0dc1d3bb47/resources/398cee0a-efac-4643-9f4c-74c48c72a14b"
+                    "example": "did:canow:testnet:55dbc8bf-fba3-4117-855c-1e0dc1d3bb47/resources/398cee0a-efac-4643-9f4c-74c48c72a14b"
                 }
             }
         },
@@ -423,7 +423,7 @@ const docTemplate = `{
                         "type": "string"
                     },
                     "example": [
-                        "did:cheqd:testnet:55dbc8bf-fba3-4117-855c-1e0dc1d3bb47#key-1"
+                        "did:canow:testnet:55dbc8bf-fba3-4117-855c-1e0dc1d3bb47#key-1"
                     ]
                 },
                 "capabilityInvocation": {
@@ -444,12 +444,12 @@ const docTemplate = `{
                         "type": "string"
                     },
                     "example": [
-                        "did:cheqd:testnet:55dbc8bf-fba3-4117-855c-1e0dc1d3bb47"
+                        "did:canow:testnet:55dbc8bf-fba3-4117-855c-1e0dc1d3bb47"
                     ]
                 },
                 "id": {
                     "type": "string",
-                    "example": "did:cheqd:testnet:55dbc8bf-fba3-4117-855c-1e0dc1d3bb47"
+                    "example": "did:canow:testnet:55dbc8bf-fba3-4117-855c-1e0dc1d3bb47"
                 },
                 "keyAgreement": {
                     "type": "array",
@@ -584,7 +584,7 @@ const docTemplate = `{
                 },
                 "id": {
                     "type": "string",
-                    "example": "did:cheqd:testnet:55dbc8bf-fba3-4117-855c-1e0dc1d3bb47#service-1"
+                    "example": "did:canow:testnet:55dbc8bf-fba3-4117-855c-1e0dc1d3bb47#service-1"
                 },
                 "serviceEndpoint": {
                     "type": "array",

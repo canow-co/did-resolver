@@ -27,7 +27,7 @@ const (
 )
 
 const (
-	DID_METHOD        = "cheqd"
+	DID_METHOD        = "canow"
 	RESOLVER_PATH     = "/1.0/identifiers/"
 	DID_VERSION_PATH  = "/version/"
 	DID_VERSIONS_PATH = "/versions"

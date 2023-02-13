@@ -6,10 +6,10 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	did "github.com/cheqd/cheqd-node/x/did/types"
-	resource "github.com/cheqd/cheqd-node/x/resource/types"
-	"github.com/cheqd/did-resolver/types"
-	"github.com/cheqd/did-resolver/utils"
+	did "github.com/canow-co/cheqd-node/x/did/types"
+	resource "github.com/canow-co/cheqd-node/x/resource/types"
+	"github.com/canow-co/did-resolver/types"
+	"github.com/canow-co/did-resolver/utils"
 	"github.com/labstack/echo/v4"
 	"github.com/stretchr/testify/require"
 )
@@ -52,7 +52,7 @@ func TestResolveDIDDoc(t *testing.T) {
 	for _, subtest := range subtests {
 		t.Run(subtest.name, func(t *testing.T) {
 			context, rec := setupContext("/1.0/identifiers/:did", []string{"did"}, []string{subtest.did}, subtest.resolutionType)
-			requestService := NewRequestService("cheqd", subtest.ledgerService)
+			requestService := NewRequestService("canow", subtest.ledgerService)
 
 			if (subtest.resolutionType == "" || subtest.resolutionType == types.DIDJSONLD) && subtest.expectedError == nil {
 				subtest.expectedDID.Context = []string{types.DIDSchemaJSONLD, types.JsonWebKey2020JSONLD}
@@ -124,7 +124,7 @@ func TestRequestService_DereferenceResourceData(t *testing.T) {
 				"/1.0/identifiers/:did/resources/:resource",
 				[]string{"did", "resource"},
 				[]string{subtest.did, subtest.resourceId}, subtest.resolutionType)
-			requestService := NewRequestService("cheqd", subtest.ledgerService)
+			requestService := NewRequestService("canow", subtest.ledgerService)
 			expectedContentType := validResource.Metadata.MediaType
 
 			err := requestService.DereferenceResourceData(context)
@@ -187,7 +187,7 @@ func TestRequestService_DereferenceResourceMetadata(t *testing.T) {
 				"/1.0/identifiers/:did/resources/:resource/metadata",
 				[]string{"did", "resource"},
 				[]string{subtest.did, subtest.resourceId}, subtest.resolutionType)
-			requestService := NewRequestService("cheqd", subtest.ledgerService)
+			requestService := NewRequestService("canow", subtest.ledgerService)
 
 			if (subtest.resolutionType == "" || subtest.resolutionType == types.DIDJSONLD) && subtest.expectedError == nil {
 				subtest.expectedResource.AddContext(types.DIDSchemaJSONLD)
@@ -263,7 +263,7 @@ func TestRequestService_DereferenceCollectionResources(t *testing.T) {
 				"/1.0/identifiers/:did/metadata",
 				[]string{"did"},
 				[]string{subtest.did}, subtest.resolutionType)
-			requestService := NewRequestService("cheqd", subtest.ledgerService)
+			requestService := NewRequestService("canow", subtest.ledgerService)
 
 			if (subtest.resolutionType == "" || subtest.resolutionType == types.DIDJSONLD) && subtest.expectedError == nil {
 				subtest.expectedResource.AddContext(types.DIDSchemaJSONLD)

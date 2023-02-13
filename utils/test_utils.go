@@ -4,14 +4,14 @@ import (
 	"crypto/sha256"
 	"fmt"
 
-	didTypes "github.com/cheqd/cheqd-node/x/did/types"
-	resource "github.com/cheqd/cheqd-node/x/resource/types"
-	"github.com/cheqd/did-resolver/types"
+	didTypes "github.com/canow-co/cheqd-node/x/did/types"
+	resource "github.com/canow-co/cheqd-node/x/resource/types"
+	"github.com/canow-co/did-resolver/types"
 )
 
 const (
 	ValidIdentifier = "fb53dd05-329b-4614-a3f2-c0a8c7554ee3"
-	ValidMethod     = "cheqd"
+	ValidMethod     = "canow"
 	ValidNamespace  = "mainnet"
 	ValidDid        = "did:" + ValidMethod + ":" + ValidNamespace + ":" + ValidIdentifier
 	ValidResourceId = "a09abea0-22e0-4b35-8f70-9cc3a6d0b5fd"
@@ -37,6 +37,7 @@ func ValidService() didTypes.Service {
 		Id:              ValidDid + "#service-1",
 		ServiceType:     "DIDCommMessaging",
 		ServiceEndpoint: []string{"http://example.com"},
+		Accept:          []string{"some_did"},
 	}
 }
 
@@ -47,6 +48,7 @@ func ValidDIDDoc() didTypes.DidDoc {
 	return didTypes.DidDoc{
 		Id:                 ValidDid,
 		VerificationMethod: []*didTypes.VerificationMethod{&verificationMethod},
+		Authentication:     []*didTypes.VerificationRelationship{{VerificationMethodId: verificationMethod.Id}},
 		Service:            []*didTypes.Service{&service},
 	}
 }

@@ -3,19 +3,19 @@ package types
 import (
 	"encoding/json"
 
-	did "github.com/cheqd/cheqd-node/x/did/types"
+	did "github.com/canow-co/cheqd-node/x/did/types"
 )
 
 type DidDoc struct {
 	Context              []string             `json:"@context,omitempty" example:"https://www.w3.org/ns/did/v1"`
-	Id                   string               `json:"id,omitempty" example:"did:cheqd:testnet:55dbc8bf-fba3-4117-855c-1e0dc1d3bb47"`
-	Controller           []string             `json:"controller,omitempty" example:"did:cheqd:testnet:55dbc8bf-fba3-4117-855c-1e0dc1d3bb47"`
+	Id                   string               `json:"id,omitempty" example:"did:canow:testnet:55dbc8bf-fba3-4117-855c-1e0dc1d3bb47"`
+	Controller           []string             `json:"controller,omitempty" example:"did:canow:testnet:55dbc8bf-fba3-4117-855c-1e0dc1d3bb47"`
 	VerificationMethod   []VerificationMethod `json:"verificationMethod,omitempty"`
-	Authentication       []string             `json:"authentication,omitempty" example:"did:cheqd:testnet:55dbc8bf-fba3-4117-855c-1e0dc1d3bb47#key-1"`
-	AssertionMethod      []string             `json:"assertionMethod,omitempty"`
-	CapabilityInvocation []string             `json:"capabilityInvocation,omitempty"`
-	CapabilityDelegation []string             `json:"capability_delegation,omitempty"`
-	KeyAgreement         []string             `json:"keyAgreement,omitempty"`
+	Authentication       *[]any               `json:"authentication,omitempty" example:"did:canow:testnet:55dbc8bf-fba3-4117-855c-1e0dc1d3bb47#key-1"`
+	AssertionMethod      *[]any               `json:"assertionMethod,omitempty"`
+	CapabilityInvocation *[]any               `json:"capabilityInvocation,omitempty"`
+	CapabilityDelegation *[]any               `json:"capability_delegation,omitempty"`
+	KeyAgreement         *[]any               `json:"keyAgreement,omitempty"`
 	Service              []Service            `json:"service,omitempty"`
 	AlsoKnownAs          []string             `json:"alsoKnownAs,omitempty"`
 }
@@ -34,9 +34,11 @@ type VerificationMaterial interface{}
 
 type Service struct {
 	Context         []string `json:"@context,omitempty"`
-	Id              string   `json:"id,omitempty" example:"did:cheqd:testnet:55dbc8bf-fba3-4117-855c-1e0dc1d3bb47#service-1"`
+	Id              string   `json:"id,omitempty" example:"did:canow:testnet:55dbc8bf-fba3-4117-855c-1e0dc1d3bb47#service-1"`
 	Type            string   `json:"type,omitempty" example:"did-communication"`
 	ServiceEndpoint []string `json:"serviceEndpoint,omitempty" example:"https://example.com/endpoint/8377464"`
+	Accept          []string `json:"accept,omitempty" example:"didcomm/v2"`
+	RoutingKeys     []string `json:"routingKeys,omitempty" example:"did:example:somemediator#somekey"`
 }
 
 func NewDidDoc(protoDidDoc did.DidDoc) DidDoc {
@@ -54,14 +56,29 @@ func NewDidDoc(protoDidDoc did.DidDoc) DidDoc {
 		Id:                   protoDidDoc.Id,
 		Controller:           protoDidDoc.Controller,
 		VerificationMethod:   verificationMethods,
-		Authentication:       protoDidDoc.Authentication,
-		AssertionMethod:      protoDidDoc.AssertionMethod,
-		CapabilityInvocation: protoDidDoc.CapabilityInvocation,
-		CapabilityDelegation: protoDidDoc.CapabilityDelegation,
-		KeyAgreement:         protoDidDoc.KeyAgreement,
+		Authentication:       formatRelationship(protoDidDoc.Authentication),
+		AssertionMethod:      formatRelationship(protoDidDoc.AssertionMethod),
+		CapabilityInvocation: formatRelationship(protoDidDoc.CapabilityInvocation),
+		CapabilityDelegation: formatRelationship(protoDidDoc.CapabilityDelegation),
+		KeyAgreement:         formatRelationship(protoDidDoc.KeyAgreement),
 		Service:              services,
 		AlsoKnownAs:          protoDidDoc.AlsoKnownAs,
 	}
+}
+
+func formatRelationship(verificationRelationship []*did.VerificationRelationship) *[]any {
+	if len(verificationRelationship) == 0 {
+		return nil
+	}
+	authentication := []any{}
+	for _, vr := range verificationRelationship {
+		if vr.VerificationMethodId != "" {
+			authentication = append(authentication, vr.VerificationMethodId)
+		} else {
+			authentication = append(authentication, *NewVerificationMethod(vr.VerificationMethod))
+		}
+	}
+	return &authentication
 }
 
 func NewVerificationMethod(protoVerificationMethod *did.VerificationMethod) *VerificationMethod {
@@ -94,6 +111,8 @@ func NewService(protoService *did.Service) *Service {
 		Id:              protoService.Id,
 		Type:            protoService.ServiceType,
 		ServiceEndpoint: protoService.ServiceEndpoint,
+		Accept:          protoService.Accept,
+		RoutingKeys:     protoService.RoutingKeys,
 	}
 }
 

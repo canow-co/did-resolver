@@ -8,10 +8,10 @@ import (
 
 	"google.golang.org/grpc/credentials"
 
-	didTypes "github.com/cheqd/cheqd-node/x/did/types"
-	didUtils "github.com/cheqd/cheqd-node/x/did/utils"
-	resource "github.com/cheqd/cheqd-node/x/resource/types"
-	"github.com/cheqd/did-resolver/types"
+	didTypes "github.com/canow-co/cheqd-node/x/did/types"
+	didUtils "github.com/canow-co/cheqd-node/x/did/utils"
+	resource "github.com/canow-co/cheqd-node/x/resource/types"
+	"github.com/canow-co/did-resolver/types"
 	"github.com/rs/zerolog/log"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"

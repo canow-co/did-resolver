@@ -3,9 +3,9 @@ package services
 import (
 	"testing"
 
-	didTypes "github.com/cheqd/cheqd-node/x/did/types"
-	resource "github.com/cheqd/cheqd-node/x/resource/types"
-	"github.com/cheqd/did-resolver/types"
+	didTypes "github.com/canow-co/cheqd-node/x/did/types"
+	resource "github.com/canow-co/cheqd-node/x/resource/types"
+	"github.com/canow-co/did-resolver/types"
 	"github.com/stretchr/testify/require"
 )
 
