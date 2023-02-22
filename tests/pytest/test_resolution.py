@@ -6,15 +6,19 @@ import requests
 from helpers import run, TESTNET_DID, MAINNET_DID, TESTNET_FRAGMENT, MAINNET_FRAGMENT, \
     FAKE_TESTNET_DID, FAKE_MAINNET_DID, FAKE_TESTNET_FRAGMENT, FAKE_MAINNET_FRAGMENT, RESOLVER_URL, PATH, \
     LDJSON, DIDJSON, DIDLDJSON, HTML, FAKE_TESTNET_RESOURCE, TESTNET_RESOURCE_METADATA, TESTNET_RESOURCE_NAME, JSON, \
-    TESTNET_RESOURCE, RESOURCE_DATA, TESTNET_RESOURCE_LIST, TESTNET_RESOURCE_LIST_REDIRECT
+    TESTNET_RESOURCE, RESOURCE_DATA, TESTNET_RESOURCE_LIST, INDY_TESTNET_DID, MIGRATED_INDY_TESTNET_DID, \
+    TESTNET_DID_VERSION, TESTNET_DID_VERSION_ID, FAKE_TESTNET_VERSION, TESTNET_DID_VERSIONS, FAKE_TESTNET_DID_VERSIONS
 
 
 @pytest.mark.parametrize(
     "did_url, expected_output",
     [
         (TESTNET_DID,
-         fr"didResolutionMetadata(.*?)didDocument(.*?)\"id\": \"{TESTNET_DID}\"(.*?)didDocumentMetadata(.*?){TESTNET_RESOURCE_NAME}"),
-        (MAINNET_DID, fr"didResolutionMetadata(.*?)didDocument(.*?)\"id\": \"{MAINNET_DID}\"(.*?)didDocumentMetadata"),
+         fr"didResolutionMetadata(.*?)didDocument(.*?)\"id\": \"{TESTNET_DID}\"(.*?)didDocumentMetadata(.*?)"),
+        
+        # mainnet DID currently use another format of DID, when mainnet network will be same like testnet network you can run this test too.
+        # (MAINNET_DID, fr"didResolutionMetadata(.*?)didDocument(.*?)\"id\": \"{MAINNET_DID}\"(.*?)didDocumentMetadata"),
+        
         (FAKE_TESTNET_DID, r"\"didResolutionMetadata(.*?)\"error\": \"notFound\"(.*?)"
                            r"didDocument\": null,(.*?)\"didDocumentMetadata\": \{\}"),
         (FAKE_MAINNET_DID, r"\"didResolutionMetadata(.*?)\"error\": \"notFound\"(.*?)"
@@ -24,20 +28,32 @@ from helpers import run, TESTNET_DID, MAINNET_DID, TESTNET_FRAGMENT, MAINNET_FRA
 
         (TESTNET_FRAGMENT, r"(.*?)dereferencingMetadata\"(.*?)"
                            fr"\"contentStream\":(.*?)\"id\": \"{TESTNET_FRAGMENT}\"(.*?)contentMetadata"),
-        (MAINNET_FRAGMENT, r"(.*?)dereferencingMetadata\"(.*?)"
-                           fr"\"contentStream\":(.*?)\"id\": \"{MAINNET_FRAGMENT}\"(.*?)contentMetadata"),
+        
+        # mainnet DID currently use another format of DID, when mainnet network will be same like testnet network you can run this test too.
+        # (MAINNET_FRAGMENT, r"(.*?)dereferencingMetadata\"(.*?)"
+        #                    fr"\"contentStream\":(.*?)\"id\": \"{MAINNET_FRAGMENT}\"(.*?)contentMetadata"),
+        
         (FAKE_TESTNET_FRAGMENT, r"\"dereferencingMetadata(.*?)\"error\": \"notFound\"(.*?)"
                                 r"\"contentStream\": null,(.*?)\"contentMetadata\": \{\}"),
         (FAKE_MAINNET_FRAGMENT, r"\"dereferencingMetadata(.*?)\"error\": \"notFound\"(.*?)"
                                 r"\"contentStream\": null,(.*?)\"contentMetadata\": \{\}"),
 
-        (TESTNET_RESOURCE_METADATA, r"\"dereferencingMetadata(.*?)\"contentStream\":(.*?)linkedResourceMetadata(.*?)"
-                                    "resourceCollectionId(.*?)\"contentMetadata\":(.*?)"),
-        (TESTNET_RESOURCE_LIST, r"\"dereferencingMetadata(.*?)\"contentStream\":(.*?)linkedResourceMetadata(.*?)"
-                                "resourceCollectionId(.*?)\"contentMetadata\":(.*?)"),
-        (TESTNET_RESOURCE, RESOURCE_DATA),
+        # (TESTNET_RESOURCE_METADATA, r"\"dereferencingMetadata(.*?)\"contentStream\":(.*?)linkedResourceMetadata(.*?)"
+        #                             "resourceCollectionId(.*?)\"contentMetadata\":(.*?)"),
+        # (TESTNET_RESOURCE_LIST, r"\"dereferencingMetadata(.*?)\"contentStream\":(.*?)linkedResourceMetadata(.*?)"
+        #                         "resourceCollectionId(.*?)\"contentMetadata\":(.*?)"),
+        # (TESTNET_RESOURCE, RESOURCE_DATA),
         (FAKE_TESTNET_RESOURCE, r"\"dereferencingMetadata(.*?)\"error\": \"notFound\"(.*?)"
                                 r"\"contentStream\": null,(.*?)\"contentMetadata\": \{\}"),
+        # (INDY_TESTNET_DID, fr"didResolutionMetadata(.*?)didDocument(.*?)\"id\": \"{MIGRATED_INDY_TESTNET_DID}\""),
+        # (MIGRATED_INDY_TESTNET_DID, fr"didResolutionMetadata(.*?)didDocument(.*?)\"id\": \"{MIGRATED_INDY_TESTNET_DID}\""),
+        (TESTNET_DID_VERSION, 
+            fr"didResolutionMetadata(.*?)didDocument(.*?)\"id\": \"{TESTNET_DID}\"(.*?)didDocumentMetadata(.*?)\"versionId\": \"{TESTNET_DID_VERSION_ID}\""),
+        (FAKE_TESTNET_VERSION, r"\"didResolutionMetadata(.*?)\"error\": \"notFound\"(.*?)"
+                           r"didDocument\": null,(.*?)\"didDocumentMetadata\": \{\}"),
+        (TESTNET_DID_VERSIONS, r"\"dereferencingMetadata(.*?)\"contentStream\":(.*?)\"contentMetadata\":(.*?)"),
+        (FAKE_TESTNET_DID_VERSIONS, r"\"didResolutionMetadata(.*?)\"error\": \"notFound\"(.*?)"
+                           r"didDocument\": null,(.*?)\"didDocumentMetadata\": \{\}"),
     ]
 )
 def test_resolution(did_url, expected_output):
@@ -139,6 +155,7 @@ primary_dereferencing_content_type_test_set = [
     "accept, expected_header, has_context, expected_status_code, expected_body",
     primary_dereferencing_content_type_test_set
 )
+@pytest.mark.skip(reason="while Canow doesn't have resources in ledgers")
 def test_dereferencing_content_type_resource_metadata(accept, expected_header, expected_body, has_context,
                                                       expected_status_code):
     url = RESOLVER_URL + PATH + TESTNET_RESOURCE_METADATA
@@ -158,33 +175,19 @@ def test_dereferencing_content_type_resource_metadata(accept, expected_header, e
     "accept, expected_header, expected_status_code",
     [(LDJSON, JSON, 200), ]
 )
+@pytest.mark.skip(reason="while Canow doesn't have resources in ledgers")
 def test_dereferencing_content_type_resource(accept, expected_header, expected_status_code):
     url = RESOLVER_URL + PATH + TESTNET_RESOURCE
     header = {"Accept": accept} if accept else {}
     r = requests.get(url, headers=header)
     assert r.headers["Content-Type"] == expected_header
 
-
-@pytest.mark.parametrize(
-    "accept, expected_header, expected_status_code, expected_body",
-    [(LDJSON, DIDLDJSON, 301,
-      r"(.*?)\"dereferencingMetadata(.*?)\"contentStream\":(.*?)"
-      r"resourceCollectionId(.*?)\"contentMetadata\":(.*?)"), ]
-)
-def test_dereferencing_content_type_resource_redirect(accept, expected_header, expected_status_code, expected_body):
-    url = RESOLVER_URL + PATH + TESTNET_RESOURCE_LIST_REDIRECT
-    header = {"Accept": accept} if accept else {}
-    r = requests.get(url, headers=header)
-    assert r.headers["Content-Type"] == expected_header
-    assert re.match(expected_body, r.text.replace("\n", "\\n"))
-
-
 @pytest.mark.parametrize(
     "did_url, expected_status_code",
     [
         (TESTNET_DID, 200),
         (TESTNET_FRAGMENT, 200),
-        (TESTNET_RESOURCE_METADATA, 200),
+        # (TESTNET_RESOURCE_METADATA, 200),
         (FAKE_TESTNET_DID, 404),
         (FAKE_TESTNET_FRAGMENT, 404),
         (FAKE_TESTNET_RESOURCE, 404),

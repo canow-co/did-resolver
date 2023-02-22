@@ -1,11 +1,9 @@
 package cmd
 
 import (
-	"net/http"
-
-	"github.com/cheqd/did-resolver/services"
-	"github.com/cheqd/did-resolver/types"
-	"github.com/cheqd/did-resolver/utils"
+	"github.com/canow-co/did-resolver/services"
+	"github.com/canow-co/did-resolver/types"
+	"github.com/canow-co/did-resolver/utils"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 	"github.com/rs/zerolog"
@@ -64,12 +62,11 @@ func serve() {
 	// Routes
 	e.GET(types.SWAGGER_PATH, echoSwagger.WrapHandler)
 	e.GET(types.RESOLVER_PATH+":did", requestService.ResolveDIDDoc)
+	e.GET(types.RESOLVER_PATH+":did"+types.DID_VERSION_PATH+":version", requestService.ResolveDIDDocVersion)
+	e.GET(types.RESOLVER_PATH+":did"+types.DID_VERSIONS_PATH, requestService.ResolveAllDidDocVersionsMetadata)
 	e.GET(types.RESOLVER_PATH+":did"+types.RESOURCE_PATH+":resource", requestService.DereferenceResourceData)
 	e.GET(types.RESOLVER_PATH+":did"+types.RESOURCE_PATH+":resource/metadata", requestService.DereferenceResourceMetadata)
-	e.GET(types.RESOLVER_PATH+":did"+types.RESOURCE_PATH+"all", requestService.DereferenceCollectionResources)
-	e.GET(types.RESOLVER_PATH+":did"+types.RESOURCE_PATH+"", func(c echo.Context) error {
-		return c.Redirect(http.StatusMovedPermanently, "all")
-	})
+	e.GET(types.RESOLVER_PATH+":did"+types.DID_METADATA, requestService.DereferenceCollectionResources)
 
 	log.Info().Msg("Starting listener")
 	log.Fatal().Err(e.Start(config.ResolverListener))

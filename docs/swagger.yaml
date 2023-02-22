@@ -42,7 +42,7 @@ definitions:
         example: Image
         type: string
       resourceURI:
-        example: did:cheqd:testnet:55dbc8bf-fba3-4117-855c-1e0dc1d3bb47/resources/398cee0a-efac-4643-9f4c-74c48c72a14b
+        example: did:canow:testnet:55dbc8bf-fba3-4117-855c-1e0dc1d3bb47/resources/398cee0a-efac-4643-9f4c-74c48c72a14b
         type: string
     type: object
   types.DereferencingMetadata:
@@ -88,7 +88,7 @@ definitions:
         type: array
       authentication:
         example:
-        - did:cheqd:testnet:55dbc8bf-fba3-4117-855c-1e0dc1d3bb47#key-1
+        - did:canow:testnet:55dbc8bf-fba3-4117-855c-1e0dc1d3bb47#key-1
         items:
           type: string
         type: array
@@ -102,12 +102,12 @@ definitions:
         type: array
       controller:
         example:
-        - did:cheqd:testnet:55dbc8bf-fba3-4117-855c-1e0dc1d3bb47
+        - did:canow:testnet:55dbc8bf-fba3-4117-855c-1e0dc1d3bb47
         items:
           type: string
         type: array
       id:
-        example: did:cheqd:testnet:55dbc8bf-fba3-4117-855c-1e0dc1d3bb47
+        example: did:canow:testnet:55dbc8bf-fba3-4117-855c-1e0dc1d3bb47
         type: string
       keyAgreement:
         items:
@@ -196,11 +196,14 @@ definitions:
           type: string
         type: array
       id:
-        example: did:cheqd:testnet:55dbc8bf-fba3-4117-855c-1e0dc1d3bb47#service-1
+        example: did:canow:testnet:55dbc8bf-fba3-4117-855c-1e0dc1d3bb47#service-1
         type: string
       serviceEndpoint:
-        example: https://example.com/endpoint/8377464
-        type: string
+        example:
+        - https://example.com/endpoint/8377464
+        items:
+          type: string
+        type: array
       type:
         example: did-communication
         type: string
@@ -253,6 +256,10 @@ paths:
       - description: '#Fragment'
         in: query
         name: fragmentId
+        type: string
+      - description: Version
+        in: query
+        name: versionId
         type: string
       produces:
       - application/did+ld+json

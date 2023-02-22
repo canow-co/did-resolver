@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/cheqd/did-resolver/types"
+	"github.com/canow-co/did-resolver/types"
 	"github.com/spf13/viper"
 )
 

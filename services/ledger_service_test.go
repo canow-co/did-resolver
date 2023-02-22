@@ -3,37 +3,34 @@ package services
 import (
 	"testing"
 
-	cheqd "github.com/cheqd/cheqd-node/x/cheqd/types"
-	resource "github.com/cheqd/cheqd-node/x/resource/types"
-	"github.com/cheqd/did-resolver/types"
+	didTypes "github.com/canow-co/cheqd-node/x/did/types"
+	resource "github.com/canow-co/cheqd-node/x/resource/types"
+	"github.com/canow-co/did-resolver/types"
 	"github.com/stretchr/testify/require"
 )
 
 func TestQueryDIDDoc(t *testing.T) {
 	subtests := []struct {
-		name             string
-		did              string
-		expectedDID      *cheqd.Did
-		expectedMetadata *cheqd.Metadata
-		expectedIsFound  bool
-		expectedError    error
+		name                     string
+		did                      string
+		expectedDidDocWithMetada *didTypes.DidDocWithMetadata
+		expectedIsFound          bool
+		expectedError            error
 	}{
 		{
-			name:             "DeadlineExceeded",
-			did:              "fake did",
-			expectedDID:      nil,
-			expectedMetadata: nil,
-			expectedIsFound:  false,
-			expectedError:    types.NewInvalidDIDError("fake did", types.JSON, nil, false),
+			name:                     "DeadlineExceeded",
+			did:                      "fake did",
+			expectedDidDocWithMetada: nil,
+			expectedIsFound:          false,
+			expectedError:            types.NewInvalidDIDError("fake did", types.JSON, nil, false),
 		},
 	}
 
 	for _, subtest := range subtests {
 		t.Run(subtest.name, func(t *testing.T) {
 			ledgerService := NewLedgerService()
-			didDoc, metadata, err := ledgerService.QueryDIDDoc("fake did")
-			require.EqualValues(t, subtest.expectedDID, didDoc)
-			require.EqualValues(t, subtest.expectedMetadata, metadata)
+			didDocWithMetadata, err := ledgerService.QueryDIDDoc("fake did", "")
+			require.EqualValues(t, subtest.expectedDidDocWithMetada, didDocWithMetadata)
 			require.EqualValues(t, subtest.expectedError.Error(), err.Error())
 		})
 	}
@@ -44,7 +41,7 @@ func TestQueryResource(t *testing.T) {
 		name             string
 		collectionDid    string
 		resourceId       string
-		expectedResource *resource.Resource
+		expectedResource *resource.ResourceWithMetadata
 		expectedError    error
 	}{
 		{

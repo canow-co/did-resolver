@@ -5,7 +5,7 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/cheqd/did-resolver/types"
+	"github.com/canow-co/did-resolver/types"
 	"github.com/labstack/echo/v4"
 )
 
@@ -48,6 +48,43 @@ func (rs RequestService) ResolveDIDDoc(c echo.Context) error {
 		return rErr
 	}
 	c.Response().Header().Set(echo.HeaderContentType, result.GetContentType())
+	return c.JSONPretty(http.StatusOK, result, "  ")
+}
+
+func (rs RequestService) ResolveDIDDocVersion(c echo.Context) error {
+	requestedContentType := getContentType(c.Request().Header.Get(echo.HeaderAccept))
+
+	did, err := getDidParam(c)
+	if err != nil {
+		return types.NewInvalidDIDUrlError(c.Param("did"), requestedContentType, err, true)
+	}
+
+	version := c.Param("version")
+
+	result, rErr := rs.didDocService.Resolve(did, version, requestedContentType)
+	if rErr != nil {
+		return rErr
+	}
+
+	c.Response().Header().Set(echo.HeaderContentType, result.GetContentType())
+
+	return c.JSONPretty(http.StatusOK, result, "  ")
+}
+
+func (rs RequestService) ResolveAllDidDocVersionsMetadata(c echo.Context) error {
+	requestedContentType := getContentType(c.Request().Header.Get(echo.HeaderAccept))
+	did, err := getDidParam(c)
+	if err != nil {
+		return types.NewInvalidDIDUrlError(c.Param("did"), requestedContentType, err, true)
+	}
+
+	result, rErr := rs.didDocService.GetAllDidDocVersionsMetadata(did, requestedContentType)
+	if rErr != nil {
+		return rErr
+	}
+
+	c.Response().Header().Set(echo.HeaderContentType, result.GetContentType())
+
 	return c.JSONPretty(http.StatusOK, result, "  ")
 }
 
